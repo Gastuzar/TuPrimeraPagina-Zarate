@@ -1,0 +1,27 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+{% block title %}Gestión de Mesas{% endblock %}
+{% block content %}
+<h3>
+    <a class="volver" href="/">Volver al Inicio</a>
+</h3>
+<h2>Gestión de Mesas</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <h3>Registrar Mesa</h3>
+    {{ form.as_p }}
+    <button type="submit">Registrar Mesa</button>
+</form>
+
+<h3>Mesas Registradas</h3>
+<ul>
+    {% for mesa in mesas %}
+    <li>Mesa {{ mesa.numero }} - Capacidad: {{ mesa.capacidad }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
